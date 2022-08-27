@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -Wall -O0 -fprofile-arcs -ftest-coverage
+CFLAGS = -g -Wall -fprofile-arcs -ftest-coverage
 LDFLAGS = -fprofile-arcs -ftest-coverage
 TARGET = test_gcov
 
@@ -10,6 +10,11 @@ all: $(OBJ)
 
 clean:
 	rm -f *.o
+	rm -f *.gc*
+	rm -rf test_gcov
+
+report:
+	gcovr
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
